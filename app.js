@@ -6,21 +6,18 @@ const app = express();
 
 app.use(morgan("dev"));
 
+
+
 app.use(express.static(__dirname + "/public"));
 
 app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride('_method'));
 
+app.use('/', require('./routes/routes'));
+
+
 const PORT = 8080;
-
-
-
-
-app.get('/', (req, res) => {
-  const message = "hello world";
-  res.send(message);
-})
 
 app.listen(PORT, () => {
   console.log('started');
